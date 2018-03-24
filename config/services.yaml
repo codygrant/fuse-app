@@ -26,3 +26,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    League\OAuth1\Client\Server\Trello:
+        arguments:
+            - identifier:   '%env(TRELLO_KEY)%'
+              secret:       '%env(TRELLO_SECRET)%'
+              callback_uri: '%env(TRELLO_CALLBACK)%'
+              name:         '%env(TRELLO_NAME)%'
+              expiration:   '%env(TRELLO_EXPIRATION)%'
+              scope:        '%env(TRELLO_SCOPE)%'
