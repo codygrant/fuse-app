@@ -34,3 +34,7 @@ services:
               name:         '%env(TRELLO_NAME)%'
               expiration:   '%env(TRELLO_EXPIRATION)%'
               scope:        '%env(TRELLO_SCOPE)%'
+    App\Utils\TrelloServices:
+        arguments:
+            - '%env(TRELLO_KEY)%'
+    Trello\Client: ~
