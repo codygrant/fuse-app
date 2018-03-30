@@ -5,8 +5,11 @@ namespace App\Entity;
 class Task
 {
     private $id;
+    private $source;
+    private $project;
     private $site_name;
     private $title;
+    private $list;
     private $url;
     private $status;
     private $description;
@@ -17,6 +20,42 @@ class Task
      */
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * Get source
+     * @return string
+     */
+    public function getSource() {
+        return $this->source;
+    }
+
+    /**
+     * Set source
+     * @return $this
+     * @param string
+     */
+    public function setSource(string $source) {
+        $this->source = $source;
+        return $this;
+    }
+
+    /**
+     * Get project
+     * @return string
+     */
+    public function getProject() {
+        return $this->source;
+    }
+
+    /**
+     * Set project
+     * @return $this
+     * @param string
+     */
+    public function setProject(string $project) {
+        $this->project = $project;
+        return $this;
     }
 
     /**
@@ -50,6 +89,23 @@ class Task
      */
     public function setTitle(string $title) {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get list
+     * @return string
+     */
+    public function getList() {
+        return $this->list;
+    }
+    /**
+     * Set list
+     * @return $this
+     * @param string
+     */
+    public function setList(string $list) {
+        $this->list = $list;
         return $this;
     }
 
