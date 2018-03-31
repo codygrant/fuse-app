@@ -30,10 +30,6 @@ class Task
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $site_name;
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
     private $title;
     /**
      * @ORM\Column(type="string", length=100)
@@ -44,15 +40,15 @@ class Task
      */
     private $url;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $status;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=16384, nullable=true)
      */
     private $description;
     /**
-     * @ORM\Column(type="datetime", length=100)
+     * @ORM\Column(type="datetime", length=100, nullable=true)
      */
     private $due_date;
     /**
@@ -118,23 +114,6 @@ class Task
      */
     public function setProject(string $project) {
         $this->project = $project;
-        return $this;
-    }
-
-    /**
-     * Get site_name
-     * @return string
-     */
-    public function getSiteName() {
-        return $this->site_name;
-    }
-    /**
-     * Set site_name
-     * @return $this
-     * @param string
-     */
-    public function setSiteName(string $site_name) {
-        $this->site_name = $site_name;
         return $this;
     }
 
