@@ -8,11 +8,13 @@
 
 namespace App\Controller;
 
+use App\Utils\TrelloServices;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use League\OAuth1\Client\Server\Trello;
+use Trello\Exception\RuntimeException;
 
 /**
  * @Route("/trello")
@@ -39,7 +41,8 @@ class TrelloController extends Controller {
             $tokenCredentials = $server->getTokenCredentials($tempCredentials, $token, $verifier);
             $this->session->set('trello_object', $tokenCredentials);
             $this->session->set('trello_token', $tokenCredentials->getIdentifier());
-            return $this->redirect($this->generateUrl('app_task_index'));
+            $this->session->set('trello_user', $server->getUserDetails($tokenCredentials));
+            return $this->redirect($this->generateUrl('app_trello_sync'));
         }
         // create the temp credentials and ask for access
         else {
@@ -48,6 +51,18 @@ class TrelloController extends Controller {
             $server->authorize($tempCredentials);
             $authorizationUrl = $server->getAuthorizationUrl($tempCredentials);
             return $this->redirect($authorizationUrl);
+        }
+    }
+
+    /**
+     * @Route("/sync")
+     */
+    public function sync(TrelloServices $services) {
+        try {
+            $services->populate_cards();
+            return $this->redirectToRoute('app_task_index');
+        } catch (RuntimeException $ex) {
+            return $this->redirectToRoute('app_trello_authenticate');
         }
     }
 }
