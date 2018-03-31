@@ -2,18 +2,59 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
+ */
 class Task
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $source;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $project;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $site_name;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $title;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $list;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $url;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $status;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $description;
+    /**
+     * @ORM\Column(type="datetime", length=100)
+     */
     private $due_date;
+    /**
+     * @ORM\Column(type="datetime", length=100)
+     */
+    private $last_updated;
 
     /**
      * Get id
@@ -174,6 +215,23 @@ class Task
      */
     public function setDueDate(\DateTime $due_date) {
         $this->due_date = $due_date;
+        return $this;
+    }
+
+    /**
+     * Get last_updated
+     * @return \DateTime
+     */
+    public function getLastUpdated() {
+        return $this->last_updated;
+    }
+    /**
+     * Set last_updated
+     * @return $this
+     * @param \DateTime
+     */
+    public function setLastUpdated(\DateTime $last_updated) {
+        $this->last_updated = $last_updated;
         return $this;
     }
 }
