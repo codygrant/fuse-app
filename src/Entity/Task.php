@@ -18,6 +18,10 @@ class Task
     /**
      * @ORM\Column(type="string", length=100)
      */
+    private $task_id;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     private $source;
     /**
      * @ORM\Column(type="string", length=100)
@@ -61,6 +65,24 @@ class Task
      */
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * Get task_id
+     * @return string
+     */
+    public function getTaskId() {
+        return $this->task_id;
+    }
+
+    /**
+     * Set task_id
+     * @return $this
+     * @param string
+     */
+    public function setTaskId(string $task_id) {
+        $this->task_id = $task_id;
+        return $this;
     }
 
     /**
