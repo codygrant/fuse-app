@@ -1,2 +1,40 @@
 {% extends "base.html.twig" %}
 
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Fuse</h1>
+                <p>Task List</p>
+                <div class="col col-sm-offset-4 col-sm-2">
+                    <a href="/trello/sync" class="btn btn-warning">Sync Trello</a>
+                </div>
+                <div class="col col-sm-2">
+                    <a href="#" class="btn btn-warning">Sync GitLab</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <h4>On Deck</h4>
+                <ul class="list-unstyled on-deck-list">
+                    {% for task in tasks %}
+                        {% if task.list|upper == 'ON DECK' or task.list|upper == 'BACKLOG' %}
+
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-6 text-center">
+                <h4>In Progress</h4>
+                <ul class="list-unstyled in-progress-list">
+                    {% for task in tasks %}
+                        {% if task.list|upper == 'IN PROGRESS' %}
+
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
