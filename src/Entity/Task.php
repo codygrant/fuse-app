@@ -104,7 +104,7 @@ class Task
      * @return string
      */
     public function getProject() {
-        return $this->source;
+        return $this->project;
     }
 
     /**
