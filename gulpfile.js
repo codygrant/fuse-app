@@ -10,7 +10,7 @@ gulp.task('sass', function() {
 
 // Move the javascript files into our /src/js folder
 gulp.task('js', function() {
-    return gulp.src(['vendor/twbs/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+    return gulp.src(['vendor/twbs/bootstrap/dist/js/bootstrap.min.js',
         'vendor/components/jquery/jquery.min.js',
         'assets/js/**/*.js'
     ])
