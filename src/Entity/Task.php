@@ -16,31 +16,31 @@ class Task
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $task_id;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $source;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $project;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $title;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $list;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string")
      */
     private $url;
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $status;
     /**
@@ -48,11 +48,11 @@ class Task
      */
     private $description;
     /**
-     * @ORM\Column(type="datetime", length=100, nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $due_date;
     /**
-     * @ORM\Column(type="datetime", length=100)
+     * @ORM\Column(type="datetime")
      */
     private $last_updated;
 
