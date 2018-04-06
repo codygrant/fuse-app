@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use DateTime;
 
-class TrelloServices {
-
+class TrelloServices
+{
     private $api_key;
     private $client;
     private $session;
@@ -28,7 +28,7 @@ class TrelloServices {
         $this->em = $em;
     }
 
-    public function populate_cards() {
+    public function populateCards() {
         // build the client object
         $token = $this->session->get('trello_token');
         $resource_owner = $this->session->get('trello_user');
@@ -38,7 +38,6 @@ class TrelloServices {
         $cards = $this->client->api('member')->cards()->all($resource_owner->nickname);
 
         foreach ($cards as $card) {
-
             // pull matching card from DB and check date of last activity
             $repository = $this->em->getRepository(Task::class);
             $entity = $repository->findOneBy([
@@ -54,8 +53,7 @@ class TrelloServices {
             $card_activity = new DateTime($card['dateLastActivity']);
             if ($entity && $card_activity >= $entity->getLastUpdated()) {
                 $this->updateTask($entity, $card, $list, $project);
-            }
-            else {
+            } else {
                 $task = new Task();
                 $task->setTaskId($card['id']);
                 $task->setSource('trello');
@@ -65,9 +63,9 @@ class TrelloServices {
                 $task->setUrl($card['shortUrl']);
                 $task->setDescription($card['desc']);
                 $task->setLastUpdated(new DateTime($card['dateLastActivity']));
-                if ($card['due'] != null)
+                if ($card['due'] != null) {
                     $task->setDueDate(new DateTime($card['due']));
-
+                }
                 // save to db
                 $this->em->persist($task);
                 $this->em->flush();
@@ -90,8 +88,9 @@ class TrelloServices {
         $task->setUrl($card['shortUrl']);
         $task->setDescription($card['desc']);
         $task->setLastUpdated(new DateTime($card['dateLastActivity']));
-        if ($card['due'] != null)
+        if ($card['due'] != null) {
             $task->setDueDate(new DateTime($card['due']));
+        }
         $this->em->flush();
     }
 }

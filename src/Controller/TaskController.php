@@ -15,7 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-class TaskController extends Controller {
+class TaskController extends Controller
+{
 
     private $session;
     private $em;
