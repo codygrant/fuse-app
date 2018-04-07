@@ -24,4 +24,9 @@ class GitLabServices
         $this->client = $client;
         $this->em = $em;
     }
+
+    public function populateIssues() {
+        $this->client = $this->client::create('https://gitlab.com')
+            ->authenticate($this->token, $this->client::AUTH_URL_TOKEN);
+    }
 }
