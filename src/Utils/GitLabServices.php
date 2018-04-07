@@ -15,5 +15,13 @@ use DateTime;
 
 class GitLabServices
 {
+    private $token;
+    private $client;
+    private $em;
 
+    public function __construct($token, Client $client, EntityManagerInterface $em) {
+        $this->token = $token;
+        $this->client = $client;
+        $this->em = $em;
+    }
 }
