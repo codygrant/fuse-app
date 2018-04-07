@@ -38,3 +38,9 @@ services:
         arguments:
             - '%env(TRELLO_KEY)%'
     Trello\Client: ~
+
+    # GitLab
+    App\Utils\GitLabServices:
+        arguments:
+            - '%env(GITLAB_TOKEN)%'
+    Gitlab\Client: ~
