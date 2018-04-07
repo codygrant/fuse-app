@@ -2,6 +2,9 @@
     "cdaguerre/php-trello-api": {
         "version": "0.9.3"
     },
+    "clue/stream-filter": {
+        "version": "v1.4.0"
+    },
     "components/jquery": {
         "version": "3.3.1"
     },
@@ -95,11 +98,38 @@
     "league/oauth1-client": {
         "version": "1.7.0"
     },
+    "m4tthumphrey/php-gitlab-api": {
+        "version": "9.8.0"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "php-http/client-common": {
+        "version": "1.7.0"
+    },
+    "php-http/discovery": {
+        "version": "1.4.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v1.1.1"
+    },
+    "php-http/httplug": {
+        "version": "v1.1.0"
+    },
+    "php-http/message": {
+        "version": "1.6.0"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
+    },
+    "php-http/multipart-stream-builder": {
+        "version": "1.0.0"
+    },
+    "php-http/promise": {
+        "version": "v1.0.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
