@@ -1,0 +1,15 @@
+<div class="card text-left">
+    <div class="card-header">
+        {% if task.source == 'trello' %}
+          <i class="fab fa-trello"></i>
+        {% elseif task.source == 'gitlab' %}
+            <i class="fab fa-gitlab"></i>
+        {% endif %}
+        <h6 class="card-title">{{ task.project }}</h6>
+    </div>
+    <div class="card-body">
+        <p class="card-subtitle">{{ task.title }}</p>
+        <p class="card-text">{{ task.duedate|date('M d, Y') }}</p>
+        <a href="{{ task.url }}" class="btn btn-outline-primary">View in {{ task.source }}</a>
+    </div>
+</div>
