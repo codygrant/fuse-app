@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col text-center">
                 <h4>On Deck</h4>
-                <div class="col-12 on-deck-list">
+                <div class="col on-deck-list">
                     {% for task in tasks %}
                         {% if task.list|upper in ['ON DECK','BACKLOG','TO DO'] %}
                             {% include 'partials/task.html.twig' %}

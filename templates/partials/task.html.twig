@@ -1,15 +1,26 @@
 <div class="card text-left">
-    <div class="card-header">
-        {% if task.source == 'trello' %}
-          <i class="fab fa-trello"></i>
-        {% elseif task.source == 'gitlab' %}
-            <i class="fab fa-gitlab"></i>
-        {% endif %}
-        <h6 class="card-title">{{ task.project }}</h6>
-    </div>
-    <div class="card-body">
-        <p class="card-subtitle">{{ task.title }}</p>
-        <p class="card-text">{{ task.duedate|date('M d, Y') }}</p>
-        <a href="{{ task.url }}" class="btn btn-outline-primary">View in {{ task.source }}</a>
-    </div>
+    <a href="{{ task.url }}" class="link-unstyled">
+        <div class="card-body">
+            {% if task.source == 'trello' %}
+                <i class="fab fa-trello"></i>
+            {% elseif task.source == 'gitlab' %}
+                <i class="fab fa-gitlab"></i>
+            {% endif %}
+            <h6 class="card-title">{{ task.project }}</h6>
+            <p class="card-subtitle">{{ task.title }}</p>
+            {% if task.getDueDate is not null %}
+                <span class="badge
+                    {% if date(task.getDueDate) > date('+3days') %}
+                        badge-success
+                    {% elseif date(task.getDueDate) > date('-1day') %}
+                        badge-warning
+                    {% else %}
+                        badge-danger
+                    {% endif %}">
+                    <i class="far fa-clock"></i>
+                    {{ task.duedate|date('M d') }}
+                </span>
+            {% endif %}
+        </div>
+    </a>
 </div>
