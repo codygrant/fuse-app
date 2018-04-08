@@ -30,5 +30,24 @@ class GitLabServices
             ->authenticate($this->token, $this->client::AUTH_URL_TOKEN);
         // pull all open issues
         $issues = $this->client->api('issues')->all(null, ['state'=>'opened']);
+
+        foreach ($issues as $issue) {
+            // find matching issue in DB
+            $repository = $this->em->getRepository(Task::class);
+            $task = $repository->findOneBy([
+                'source' => 'gitlab',
+                'task_id' => $issue['id'],
+            ]);
+            if ($task && $issue['updated_at'] > $task->getLastUpdated()) {
+                // buildTask()
+                $this->em->flush();
+            } elseif (!$task) {
+                $task = new Task();
+                // buildTask()
+                // save to db
+                $this->em->persist($task);
+                $this->em->flush();
+            }
+        }
     }
 }
