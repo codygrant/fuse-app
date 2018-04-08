@@ -28,5 +28,7 @@ class GitLabServices
     public function populateIssues() {
         $this->client = $this->client::create('https://gitlab.com')
             ->authenticate($this->token, $this->client::AUTH_URL_TOKEN);
+        // pull all open issues
+        $issues = $this->client->api('issues')->all(null, ['state'=>'opened']);
     }
 }
