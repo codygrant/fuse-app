@@ -8,7 +8,28 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use App\Utils\GitLabServices;
 
-class GitLabController {
+/**
+ * Class GitLabController
+ * @package App\Controller
+ * @Route("/gitlab")
+ */
+class GitLabController extends Controller
+{
+    private $services;
 
+    public function __construct(GitLabServices $services) {
+        $this->services = $services;
+    }
+
+    /**
+     * @Route("/sync")
+     */
+    public function sync() {
+        $this->services->populateIssues();
+        return $this->redirectToRoute('app_task_index');
+    }
 }
