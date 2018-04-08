@@ -38,16 +38,44 @@ class GitLabServices
                 'source' => 'gitlab',
                 'task_id' => $issue['id'],
             ]);
+            // update task in DB if issue has recent activity
             if ($task && $issue['updated_at'] > $task->getLastUpdated()) {
-                // buildTask()
+                $this->buildTask($task, $issue);
                 $this->em->flush();
             } elseif (!$task) {
                 $task = new Task();
-                // buildTask()
+                $this->buildTask($task, $issue);
                 // save to db
                 $this->em->persist($task);
                 $this->em->flush();
             }
+        }
+    }
+
+    public function buildTask(Task $current_task, $issue) {
+        // use API to get project
+        $project = $this->client->api('projects')->show($issue['project_id']);
+
+        // set list as default then see if it matches others
+        $task_list = 'Backlog';
+        foreach ($issue['labels'] as $label) {
+            if ($label == 'To Do') {
+                $task_list = $label;
+            } elseif ($label == 'Doing') {
+                $task_list = $label;
+            }
+        }
+        // build task
+        $current_task->setTaskId($issue['id']);
+        $current_task->setSource('gitlab');
+        $current_task->setProject($project['name']);
+        $current_task->setTitle($issue['title']);
+        $current_task->setList($task_list);
+        $current_task->setUrl($issue['web_url']);
+        $current_task->setDescription($issue['description']);
+        $current_task->setLastUpdated(new DateTime($issue['updated_at']));
+        if ($issue['due_date'] != null) {
+            $current_task->setDueDate(new DateTime($issue['due_date']));
         }
     }
 }
