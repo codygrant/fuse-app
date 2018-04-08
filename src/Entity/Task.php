@@ -190,7 +190,7 @@ class Task
      * @return string
      */
     public function getDescription() {
-        return $this->url;
+        return $this->description;
     }
     /**
      * Set description
