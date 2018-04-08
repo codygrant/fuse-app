@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="col col-sm-2 text-left">
-                <a href="#" class="btn btn-block btn-outline-danger">
+                <a href="/gitlab/sync" class="btn btn-block btn-outline-danger">
                     <i class="fab fa-gitlab"></i>
                     Sync
                 </a>
@@ -27,7 +27,7 @@
                 <h4>On Deck</h4>
                 <div class="col-12 on-deck-list">
                     {% for task in tasks %}
-                        {% if task.list|upper == 'ON DECK' or task.list|upper == 'BACKLOG' %}
+                        {% if task.list|upper in ['ON DECK','BACKLOG','TO DO'] %}
                             {% include 'partials/task.html.twig' %}
                         {% endif %}
                     {% endfor %}
@@ -37,7 +37,7 @@
                 <h4>In Progress</h4>
                 <div class="col in-progress-list">
                     {% for task in tasks %}
-                        {% if task.list|upper == 'IN PROGRESS' %}
+                        {% if task.list|upper in ['IN PROGRESS','DOING'] %}
                             {% include 'partials/task.html.twig' %}
                         {% endif %}
                     {% endfor %}
